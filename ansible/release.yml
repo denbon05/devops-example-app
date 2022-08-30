@@ -1,9 +1,7 @@
 ---
-
 - hosts: all
   gather_facts: no
   tasks:
-
     - community.docker.docker_network:
         name: devops-example
 
@@ -21,8 +19,9 @@
         networks:
           - name: devops-example
         # Делаем доступным снаружи
+        # Больше не нужно выставлять наружу, потому что доступ идет через Caddy
         ports:
-          - 3000:3000
+        # - 3000:3000
         env: # Настраиваем
           NODE_ENV: production
 
