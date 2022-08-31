@@ -5,12 +5,12 @@ services:
     volumes:
       - .:/app
     ports:
-      - 3000:3000
+      - 80:3000
 
-  caddy:
-    volumes:
-      - .:/app
-      - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
-    ports:
-      - 80:80
-      - 443:443
+  # caddy:
+  #   volumes:
+  #     - .:/app
+  #     - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
+  #   ports:
+  #     - 80:80
+  #     - 443:443

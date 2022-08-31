@@ -2,8 +2,8 @@
 - hosts: all
   gather_facts: no
   tasks:
-    - community.docker.docker_network:
-        name: devops-example
+    # - community.docker.docker_network:
+    #     name: devops-example
 
     - community.docker.docker_container:
         name: app
@@ -16,22 +16,21 @@
         restart_policy: always
         # Запускаем если не запущен
         state: started
-        networks:
-          - name: devops-example
-        # Делаем доступным снаружи
+        # networks:
+        #   - name: devops-example
         # Больше не нужно выставлять наружу, потому что доступ идет через Caddy
         ports:
-        # - 3000:3000
+          - 3000:3000
         env: # Настраиваем
           NODE_ENV: production
 
-    - community.docker.docker_container:
-        name: caddy
-        image: "hexletcomponents/devops-example-caddy:{{ version }}"
-        restart_policy: always
-        state: started
-        networks:
-          - name: devops-example
-        ports:
-          - 80:80
-          - 443:443
+    # - community.docker.docker_container:
+    #     name: caddy
+    #     image: "hexletcomponents/devops-example-caddy:{{ version }}"
+    #     restart_policy: always
+    #     state: started
+    #     networks:
+    #       - name: devops-example
+    #     ports:
+    #       - 80:80
+    #       - 443:443
